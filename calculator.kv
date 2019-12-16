@@ -3,42 +3,41 @@
 <CalculatorWindow>:
     orientation: "vertical"
     
+    canvas.before:
+        Color:
+            rgba: hex("#3F3E3E")
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    
     BoxLayout:
         size_hint_y: None
-        height: 75
-        canvas.before:
-            Color:
-                rgba: hex("#3F3E3E")
-            Rectangle:
-                size: self.size
-                pos: self.pos
+        height: 50
+        padding: 3,3
         Label:
-            text: "0"
+            id: textOperator
+            text: ""
             valign: 'top'
+            font_size: 25
             text_size: self.size
-            font_size: 35
             bold: True
             color: 1,1,1,1
             
     BoxLayout:
         size_hint_y: None
-        height: 75
-        canvas.before:
-            Color:
-                rgba: hex("#3F3E3E")
-            Rectangle:
-                size: self.size
-                pos: self.pos
-            
+        height: 50    
+        padding: 3,3
         Label:
-            text: "Answer"
+            id: textAnswer
+            text: ""
             halign: 'right'
             valign: 'bottom'
-            text_size: self.size
-            font_size: 35   
+            font_size: 25
+            text_size: self.size  
             bold: True   
             color: 1,1,1,1 
 
+    #BoxLayout for buttons
     BoxLayout:
         orientation: "vertical"
         
@@ -54,28 +53,32 @@
             padding: 2,1
             Button: 
                 text: "AC"
-                font_size: 25
                 bold: True
+                font_size: 20
                 background_color: hex("#ed902d")
                 background_normal: ""
+                on_press: root.btnClearKey()
             Button: 
                 text: "DEL"
-                font_size: 25
                 bold: True
+                font_size: 20
                 background_color: hex("#ed902d")
                 background_normal: ""
+                on_press: root.btnDelKey()
             Button: 
                 text: "%"
-                font_size: 25
                 bold: True
+                font_size: 20
                 background_color: hex("#ed902d")
                 background_normal: ""
+                on_press: root.btnPercent()
             Button: 
                 text: "/"
-                font_size: 25
                 bold: True
+                font_size: 20
                 background_color: hex("#ed902d")
                 background_normal: ""
+                on_press: root.btnPressed("/")
 
         BoxLayout:
             orientation: "horizontal"
@@ -83,31 +86,35 @@
             spacing: 2
             Button: 
                 text: "7"
-                font_size: 25
                 bold: True
+                font_size: 20
                 background_color: hex("#D6D6D6")
                 background_normal: ""
                 color: hex("#3F3E3E")
+                on_press: root.btnPressed("7")
             Button: 
                 text: "8"
-                font_size: 25
                 bold: True
+                font_size: 20
                 background_color: hex("#D6D6D6")
                 background_normal: ""
                 color: hex("#3F3E3E")
+                on_press: root.btnPressed("8")
             Button: 
                 text: "9"
-                font_size: 25
                 bold: True
+                font_size: 20
                 background_color: hex("#D6D6D6")
                 background_normal: ""
                 color: hex("#3F3E3E")
+                on_press: root.btnPressed("9")
             Button: 
                 text: "x"
-                font_size: 25
                 bold: True
+                font_size: 20
                 background_color: hex("#ed902d")
                 background_normal: ""
+                on_press: root.btnPressed("*")
 
         BoxLayout:
             orientation: "horizontal"
@@ -115,31 +122,35 @@
             spacing: 2
             Button: 
                 text: "4"
-                font_size: 25
                 bold: True
+                font_size: 20
                 background_color: hex("#D6D6D6")
                 background_normal: ""
                 color: hex("#3F3E3E")
+                on_press: root.btnPressed("4")
             Button: 
                 text: "5"
-                font_size: 25
                 bold: True
+                font_size: 20
                 background_color: hex("#D6D6D6")
                 background_normal: ""
                 color: hex("#3F3E3E")
+                on_press: root.btnPressed("5")
             Button: 
                 text: "6"
-                font_size: 25
                 bold: True
+                font_size: 20
                 background_color: hex("#D6D6D6")
                 background_normal: ""
                 color: hex("#3F3E3E")
+                on_press: root.btnPressed("6")
             Button: 
                 text: "-"
-                font_size: 25
                 bold: True
+                font_size: 20
                 background_color: hex("#ed902d")
                 background_normal: ""
+                on_press: root.btnPressed("-")
 
         BoxLayout:
             orientation: "horizontal"
@@ -147,31 +158,35 @@
             spacing: 2
             Button: 
                 text: "1"
-                font_size: 25
                 bold: True
+                font_size: 20
                 background_color: hex("#D6D6D6")
                 background_normal: ""
                 color: hex("#3F3E3E")
+                on_press: root.btnPressed("1")
             Button: 
                 text: "2"
-                font_size: 25
                 bold: True
+                font_size: 20
                 background_color: hex("#D6D6D6")
                 background_normal: ""
                 color: hex("#3F3E3E")
+                on_press: root.btnPressed("2")
             Button: 
                 text: "3"
-                font_size: 25
                 bold: True
+                font_size: 20
                 background_color: hex("#D6D6D6")
                 background_normal: ""
                 color: hex("#3F3E3E")
+                on_press: root.btnPressed("3")
             Button: 
                 text: "+"
-                font_size: 25
                 bold: True
+                font_size: 20
                 background_color: hex("#ed902d")
                 background_normal: ""
+                on_press: root.btnPressed("+")
 
         BoxLayout:
             
@@ -181,23 +196,26 @@
             Button: 
                 text: "0"
                 bold: True
-                font_size: 25
+                font_size: 20
                 size_hint_x: .5
                 background_color: hex("#D6D6D6")
                 background_normal: ""
                 color: hex("#3F3E3E")
+                on_press: root.btnPressed("0")
             Button: 
                 text: "."
                 bold: True
-                font_size: 25
+                font_size: 20
                 size_hint_x: .25
                 background_color: hex("#ed902d")
                 background_normal: ""
+                on_press: root.btnPressed(".")
             Button: 
                 text: "="
                 bold: True
-                font_size: 25
+                font_size: 20
                 size_hint_x: .25
                 background_color: hex("#ed902d")
                 background_normal: ""
+                on_press: root.btnEquals()
         
