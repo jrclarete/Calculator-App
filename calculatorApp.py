@@ -14,6 +14,7 @@ kivy.require('1.11.1')
 
 class CalculatorWindow(BoxLayout):
     operator = ""
+    calculation = ""
     
     def __init__(self, **kwargs):
         super(CalculatorWindow, self).__init__(**kwargs)
@@ -27,19 +28,37 @@ class CalculatorWindow(BoxLayout):
         if(self.operator):
             try:
                 self.calculation = eval(self.operator)
-                self.label = self.ids["textAnswer"]
-                self.label.text = str(self.calculation)
+                self.labelOperator = self.ids["textOperator"]
+                self.labelAnswer = self.ids["textAnswer"]
+                self.labelOperator.text = str(self.calculation)
+                self.labelAnswer.text = str(self.calculation)
+                self.operator = str(self.calculation)
             except Exception:
                 self.label = self.ids["textAnswer"]
                 self.label.text = "Syntax Error"
             
     def btnPercent(self):
-        self.labelOperator = self.ids["textOperator"]
-        self.labelAnswer = self.ids["textAnswer"]
-        self.labelAnswer.text += str(int(self.operator) / 100)
-        
-        
-        
+        if(self.calculation):   
+            self.calcPercent = float(self.calculation) / 100
+            self.labelOperator = self.ids["textOperator"]
+            self.labelAnswer = self.ids["textAnswer"]
+            self.labelAnswer.text = str(self.calcPercent)
+            self.labelOperator.text = str(self.calcPercent)
+            self.calculation = str(self.calcPercent)
+            self.operator = str(self.calcPercent)
+        elif(self.operator):
+            try:
+                self.calcPercent = float(self.operator) / 100
+                self.labelOperator = self.ids["textOperator"]
+                self.labelAnswer = self.ids["textAnswer"]
+                self.labelOperator.text = str(self.calcPercent)
+                self.labelAnswer.text = str(self.calcPercent)
+                self.calculation = str(self.calcPercent)
+                self.operator = str(self.calcPercent)
+            except Exception:
+                self.label = self.ids["textAnswer"]
+                self.label.text = "Syntax Error"
+           
     def btnDelKey(self):
         self.label = self.ids["textOperator"]
         if(self.operator):
